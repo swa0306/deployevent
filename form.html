@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a new lead</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .top-bar {
+            background: #f89c33;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 18px;
+        }
+
+        .link-list {
+            text-align: right;
+            margin: 10px 20px 0;
+            font-size: 13px;
+        }
+
+        .link-list a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        .container {
+            background: #fff;
+            margin: 15px auto 30px;
+            padding: 20px 25px 35px;
+            max-width: 1100px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.15);
+            border-radius: 4px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .edit-btn {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .form-columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 6px 8px;
+            font-size: 13px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        select {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .button-row {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 0 5px;
+            border-radius: 3px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .btn-close {
+            background: #ddd;
+            color: #333;
+        }
+
+        /* small screens */
+        @media (max-width: 900px) {
+            .form-columns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    Event Management Portal
+    &nbsp; | &nbsp;
+    <a href="index.html" style="color:#fff;text-decoration:none;font-size:13px;">Home</a>
+</div>
+
+<div class="link-list">
+    <a href="leads.html">View stored leads</a>
+</div>
+
+<div class="container">
+    <div class="header-row">
+        <h2>Add a new lead</h2>
+        <button type="button" class="edit-btn">Edit Fields</button>
+    </div>
+
+    <form id="leadForm">
+        <div class="form-columns">
+
+            <!-- LEFT COLUMN -->
+            <div class="column">
+                <div class="form-group">
+                    <label>Vendor</label>
+                    <select name="vendor">
+                        <option value="">Select vendor</option>
+                        <option>Vendor A</option>
+                        <option>Vendor B</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" name="company_name">
+                </div>
+
+                <div class="form-group">
+                    <label>Stars</label>
+                    <select name="stars">
+                        <option value="">Select</option>
+                        <option>1 Star</option>
+                        <option>2 Stars</option>
+                        <option>3 Stars</option>
+                        <option>4 Stars</option>
+                        <option>5 Stars</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone2</label>
+                    <input type="text" name="phone2">
+                </div>
+
+                <div class="form-group">
+                    <label>Home Value</label>
+                    <input type="text" name="home_value">
+                </div>
+
+                <div class="form-group">
+                    <label>Current Loan Type</label>
+                    <input type="text" name="current_loan_type">
+                </div>
+
+                <div class="form-group">
+                    <label>Property Type</label>
+                    <input type="text" name="property_type">
+                </div>
+
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" name="state">
+                </div>
+
+                <div class="form-group">
+                    <label>Closing Date</label>
+                    <input type="date" name="closing_date">
+                </div>
+
+                <div class="form-group">
+                    <label>Hike Fee</label>
+                    <input type="text" name="hike_fee">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description"></textarea>
+                </div>
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="column">
+                <div class="form-group">
+                    <label>Referral Partner</label>
+                    <select name="referral_partner">
+                        <option value="">Select</option>
+                        <option>Partner 1</option>
+                        <option>Partner 2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" name="first_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Revenue</label>
+                    <select name="revenue">
+                        <option value="">Select</option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Current Loan Amount</label>
+                    <input type="text" name="current_loan_amount">
+                </div>
+
+                <div class="form-group">
+                    <label>Employer</label>
+                    <input type="text" name="employer">
+                </div>
+
+                <div class="form-group">
+                    <label>Address1</label>
+                    <input type="text" name="address1">
+                </div>
+
+                <div class="form-group">
+                    <label>Zip</label>
+                    <input type="text" name="zip">
+                </div>
+
+                <div class="form-group">
+                    <label>Income</label>
+                    <input type="text" name="income">
+                </div>
+
+                <div class="form-group">
+                    <label>Co Borrower First Name</label>
+                    <input type="text" name="co_borrower_first_name">
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="column">
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="">Select status</option>
+                        <option>New</option>
+                        <option>In Progress</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone1</label>
+                    <input type="text" name="phone1">
+                </div>
+
+                <div class="form-group">
+                    <label>Refinance Expectation</label>
+                    <input type="text" name="refinance_expectation">
+                </div>
+
+                <div class="form-group">
+                    <label>Current Rate</label>
+                    <input type="text" name="current_rate">
+                </div>
+
+                <div class="form-group">
+                    <label>SSN</label>
+                    <input type="text" name="ssn">
+                </div>
+
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" name="city">
+                </div>
+
+                <div class="form-group">
+                    <label>Stage</label>
+                    <input type="text" name="stage">
+                </div>
+
+                <div class="form-group">
+                    <label>Credit Range</label>
+                    <input type="text" name="credit_range">
+                </div>
+
+                <div class="form-group">
+                    <label>Co Borrower Last Name</label>
+                    <input type="text" name="co_borrower_last_name">
+                </div>
+            </div>
+
+        </div> <!-- /form-columns -->
+
+        <div class="button-row">
+            <button type="submit" class="btn btn-save">Save</button>
+            <button type="reset" class="btn btn-close">Close</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    // Save form data in browser localStorage and go to leads.html
+    document.getElementById('leadForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const lead = Object.fromEntries(formData.entries());
+
+        // Add a created time
+        lead.createdAt = new Date().toLocaleString();
+
+        let leads = JSON.parse(localStorage.getItem('leads') || '[]');
+        leads.push(lead);
+        localStorage.setItem('leads', JSON.stringify(leads));
+
+        // Go to the list page
+        window.location.href = 'leads.html';
+    });
+</script>
+
+</body>
+</html>

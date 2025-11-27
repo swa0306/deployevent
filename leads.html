@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stored Leads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+        .top-bar {
+            background: #f89c33;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 18px;
+        }
+        .container {
+            background: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.15);
+            border-radius: 4px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px 8px;
+            text-align: left;
+        }
+        th {
+            background: #f4f4f4;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .btn-clear {
+            border: none;
+            background: #e57373;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .msg {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    Event Management Portal
+    &nbsp; | &nbsp;
+    <a href="index.html" style="color:#fff;text-decoration:none;font-size:13px;">Home</a>
+</div>
+
+<div class="container">
+    <div class="controls">
+        <h2>Stored Leads</h2>
+        <div>
+            <a href="form.html">+ Add new lead</a>
+            &nbsp;&nbsp;
+            <button class="btn-clear" id="clearBtn">Clear all</button>
+        </div>
+    </div>
+
+    <table id="leadTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone1</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>City</th>
+            <th>Created At</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- rows will be added by JS -->
+        </tbody>
+    </table>
+
+    <div class="msg" id="msg"></div>
+</div>
+
+<script>
+    const tableBody = document.querySelector('#leadTable tbody');
+    const msgEl = document.getElementById('msg');
+
+    function loadLeads() {
+        tableBody.innerHTML = '';
+        let leads = JSON.parse(localStorage.getItem('leads') || '[]');
+
+        if (leads.length === 0) {
+            msgEl.textContent = 'No leads found. Fill the form first.';
+            return;
+        } else {
+            msgEl.textContent = '';
+        }
+
+        leads.forEach((lead, index) => {
+            const tr = document.createElement('tr');
+
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${lead.first_name || ''}</td>
+                <td>${lead.last_name || ''}</td>
+                <td>${lead.phone1 || ''}</td>
+                <td>${lead.email || ''}</td>
+                <td>${lead.status || ''}</td>
+                <td>${lead.city || ''}</td>
+                <td>${lead.createdAt || ''}</td>
+            `;
+
+            tableBody.appendChild(tr);
+        });
+    }
+
+    document.getElementById('clearBtn').addEventListener('click', function () {
+        if (confirm('Delete all stored leads from this browser?')) {
+            localStorage.removeItem('leads');
+            loadLeads();
+        }
+    });
+
+    // Load data on page open
+    loadLeads();
+</script>
+
+</body>
+</html>
