@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Event Management Form</title>
+
+    <style>
+        body {
+            background: #f3f5f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            background: #6a5acd; /* purple */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 950px;
+            background: white;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #6a5acd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .group {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #f8f8f8;
+        }
+
+        .services label {
+            display: inline-block;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .btn {
+            background: #6a5acd;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #5847b0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">COLLEGE EVENT MANAGEMENT FORM</div>
+
+<div class="container">
+    <h2>College Event Proposal & Requirement Form</h2>
+
+    <form>
+
+        <!-- COLLEGE & DEPARTMENT -->
+        <div class="section">College & Department Details</div>
+        <div class="row">
+            <div class="group">
+                <label>College Name</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Department</label>
+                <input type="text" placeholder="e.g. Computer Engineering, IT, EXTC">
+            </div>
+
+            <div class="group">
+                <label>Academic Year</label>
+                <input type="text" placeholder="e.g. 2025–2026">
+            </div>
+        </div>
+
+        <!-- STUDENT / ORGANIZER DETAILS -->
+        <div class="section">Student / Organizer Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Student Coordinator Name</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Class / Year</label>
+                <input type="text" placeholder="e.g. TY Diploma, SY B.Tech">
+            </div>
+
+            <div class="group">
+                <label>Roll No.</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Mobile Number</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Email ID</label>
+                <input type="email">
+            </div>
+
+            <div class="group">
+                <label>Other Organizers / Team Members</label>
+                <input type="text" placeholder="Names of other student organizers">
+            </div>
+        </div>
+
+        <!-- EVENT BASIC DETAILS -->
+        <div class="section">Event Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Event Name / Title</label>
+                <input type="text" placeholder="e.g. TechFest Coding Competition" required>
+            </div>
+
+            <div class="group">
+                <label>Event Category</label>
+                <select>
+                    <option value="">Select</option>
+                    <option>Technical</option>
+                    <option>Cultural</option>
+                    <option>Sports</option>
+                    <option>Workshop / Seminar</option>
+                    <option>Guest Lecture</option>
+                    <option>Project Exhibition</option>
+                    <option>Competition</option>
+                    <option>Awareness Program</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Event Level</label>
+                <select>
+                    <option>Intra-College</option>
+                    <option>Inter-College</option>
+                    <option>Department Level</option>
+                    <option>Institute Level</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Event Date</label>
+                <input type="date" required>
+            </div>
+
+            <div class="group">
+                <label>Start Time</label>
+                <input type="time">
+            </div>
+
+            <div class="group">
+                <label>End Time</label>
+                <input type="time">
+            </div>
+
+            <div class="group">
+                <label>Expected No. of Participants</label>
+                <input type="number">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Event Venue (Classroom / Lab / Hall / Ground)</label>
+                <input type="text" placeholder="e.g. Seminar Hall, Lab 304, Playground">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Brief Description of Event</label>
+                <textarea placeholder="Objective of event, activities, outcomes, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- EVENT SCHEDULE -->
+        <div class="section">Event Schedule / Flow</div>
+        <span class="note">Mention main activities like inauguration, rounds, break, prize distribution, etc.</span>
+
+        <table>
+            <tr>
+                <th>Activity / Session</th>
+                <th>Time</th>
+                <th>Details</th>
+                <th>Handled By</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Inauguration / Welcome"></td>
+                <td><input type="time"></td>
+                <td><input type="text" placeholder="Chief guest / HOD welcome"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Main Event / Round 1"></td>
+                <td><input type="time"></td>
+                <td><input type="text" placeholder="Rules, instructions, etc."></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Round 2 / Activity 2"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Break / Refreshments"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Prize Distribution / Feedback"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+
+        <!-- EVENT REQUIREMENTS -->
+        <div class="section">Event Requirements (College Resources)</div>
+        <div class="services">
+            <label><input type="checkbox"> Classroom / Seminar Hall</label>
+            <label><input type="checkbox"> Projector / Screen</label>
+            <label><input type="checkbox"> Sound System / Mic</label>
+            <label><input type="checkbox"> Stage / Dias</label>
+            <label><input type="checkbox"> Whiteboard / Markers</label>
+            <label><input type="checkbox"> Computers / Lab Access</label>
+            <label><input type="checkbox"> Internet / Wi-Fi</label>
+            <label><input type="checkbox"> Chairs / Extra Seating</label>
+            <label><input type="checkbox"> Banners / Posters</label>
+            <label><input type="checkbox"> Registration Desk</label>
+            <label><input type="checkbox"> Volunteers / Student Helpers</label>
+            <label><input type="checkbox"> Photography / Video</label>
+            <label><input type="checkbox"> Certificates Printing</label>
+            <label><input type="checkbox"> First Aid Box</label>
+            <label><input type="checkbox"> Security / Discipline Support</label>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+            <div class="group">
+                <label>Other Special Requirements</label>
+                <textarea placeholder="Any other technical / non-technical requirement."></textarea>
+            </div>
+        </div>
+
+        <!-- BUDGET & SPONSORSHIP -->
+        <div class="section">Budget & Sponsorship Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Approximate Budget Required (₹)</label>
+                <input type="number" placeholder="Total expected expense">
+            </div>
+
+            <div class="group">
+                <label>Funds From (CDB / Department / Students / Other)</label>
+                <input type="text" placeholder="e.g. College fund, department, sponsors">
+            </div>
+
+            <div class="group">
+                <label>Any Sponsorship / External Support</label>
+                <input type="text" placeholder="If any company / sponsor involved">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Prize Details (if any)</label>
+                <textarea placeholder="Prize money, medals, certificates, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- PERMISSIONS -->
+        <div class="section">Permissions & Approvals</div>
+        <div class="row">
+            <div class="group">
+                <label>Faculty In-charge Name</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>HOD Name</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Principal / Director (if required)</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Any Conditions / Instructions from Department</label>
+                <textarea></textarea>
+            </div>
+        </div>
+
+        <!-- DECLARATION & SIGNATURE -->
+        <div class="section">Declaration & Signature</div>
+        <p class="note">
+            I hereby declare that the above event details are correct and the event will be conducted responsibly as per college rules and regulations.
+        </p>
+
+        <div class="row">
+            <div class="group">
+                <label>Student Coordinator Name (Signature)</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Date</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Faculty In-charge Signature</label>
+                <input type="text" placeholder="Name / Sign">
+            </div>
+
+            <div class="group">
+                <label>HOD Signature</label>
+                <input type="text" placeholder="Name / Sign">
+            </div>
+        </div>
+
+        <button class="btn" type="submit">Submit College Event Form</button>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Common Event Requirement Form</title>
+
+    <style>
+        body {
+            background: #f3f5f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            background: #009688; /* teal */
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 950px;
+            background: white;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #009688;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .group {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        th {
+            background: #f8f8f8;
+        }
+
+        .services label {
+            display: inline-block;
+            margin-right: 20px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .services input {
+            margin-right: 5px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .btn {
+            background: #009688;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #00796b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">COMMON EVENT REQUIREMENT FORM</div>
+
+<div class="container">
+    <h2>General Event Requirement / Booking Form</h2>
+
+    <form>
+
+        <!-- CLIENT / CUSTOMER DETAILS -->
+        <div class="section">Client / Customer Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Client / Customer Name</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Mobile Number</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Email ID</label>
+                <input type="email">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Address</label>
+                <textarea placeholder="Full address"></textarea>
+            </div>
+        </div>
+
+        <!-- EVENT BASIC DETAILS (ANY TYPE OF EVENT) -->
+        <div class="section">Event Basic Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Event Name / Title</label>
+                <input type="text" placeholder="e.g. Family Function, Product Launch, Religious Event" required>
+            </div>
+
+            <div class="group">
+                <label>Event Type (Free Text)</label>
+                <input type="text" placeholder="Wedding / Birthday / Corporate / Social / Other">
+            </div>
+
+            <div class="group">
+                <label>Event Category (optional)</label>
+                <select>
+                    <option value="">Select (Optional)</option>
+                    <option>Personal / Family</option>
+                    <option>Corporate / Office</option>
+                    <option>Religious / Spiritual</option>
+                    <option>Educational / College</option>
+                    <option>Public / Social</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Event Date</label>
+                <input type="date">
+            </div>
+
+            <div class="group">
+                <label>Start Time</label>
+                <input type="time">
+            </div>
+
+            <div class="group">
+                <label>End Time</label>
+                <input type="time">
+            </div>
+
+            <div class="group">
+                <label>Expected No. of Guests / Participants</label>
+                <input type="number" min="0">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Event Venue / Location</label>
+                <input type="text" placeholder="Hall name, ground, home, office, etc.">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Brief Description of Event</label>
+                <textarea placeholder="Explain what kind of event it is and what you want."></textarea>
+            </div>
+        </div>
+
+        <!-- EVENT SCHEDULE (GENERIC) -->
+        <div class="section">Event Schedule / Program Flow</div>
+        <span class="note">You can write the flow of event like welcome, main program, food, closing, etc.</span>
+
+        <table>
+            <tr>
+                <th>Activity / Session</th>
+                <th>Time</th>
+                <th>Details</th>
+                <th>In-charge / Person Responsible</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="e.g. Welcome / Entry"></td>
+                <td><input type="time"></td>
+                <td><input type="text" placeholder="Short description"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Main Program / Function"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Activity / Games / Session"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Food / Snacks / Dinner"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Vote of Thanks / Closing"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+
+        <!-- GENERAL EVENT REQUIREMENTS (MANUAL FILL) -->
+        <div class="section">Event Requirements (Customer Can Fill Manually)</div>
+        <p class="note">Below sections are free-text so customer can write any requirement in detail.</p>
+
+        <div class="row">
+            <div class="group">
+                <label>Venue Requirements</label>
+                <textarea placeholder="Hall size, indoor/outdoor, AC / Non-AC, stage size, seating style, etc."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Decoration Requirements</label>
+                <textarea placeholder="Theme, colours, flowers, backdrop, entrance gate, lighting, etc."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Sound, Music & Stage Requirements</label>
+                <textarea placeholder="Mic, speakers, DJ, stage, projector, LED screen, etc."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Food & Catering Requirements</label>
+                <textarea placeholder="Veg / Non-Veg, snacks, main course, special items, timing, etc."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Program / Activities / Special Arrangements</label>
+                <textarea placeholder="Games, performances, anchors, guests, rituals, special moments, etc."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Other Services Required</label>
+                <textarea placeholder="Photography, videography, transport, rooms, security, gifts, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- OPTIONAL CHECKBOXES FOR QUICK TICK -->
+        <div class="row">
+            <div class="group">
+                <label>Quick Selection (Tick if needed)</label>
+                <div class="services">
+                    <label><input type="checkbox"> Venue Booking Help</label>
+                    <label><input type="checkbox"> Decoration</label>
+                    <label><input type="checkbox"> Catering / Food</label>
+                    <label><input type="checkbox"> Photography / Video</label>
+                    <label><input type="checkbox"> DJ / Music</label>
+                    <label><input type="checkbox"> Invitation Cards / Digital Invite</label>
+                    <label><input type="checkbox"> Transport / Vehicle</label>
+                    <label><input type="checkbox"> Guest Management Support</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUDGET & PAYMENT (GENERAL) -->
+        <div class="section">Budget & Payment Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Approximate Budget (₹)</label>
+                <input type="number" placeholder="Total budget as per client">
+            </div>
+
+            <div class="group">
+                <label>Advance Amount (if any) (₹)</label>
+                <input type="number">
+            </div>
+
+            <div class="group">
+                <label>Preferred Payment Mode</label>
+                <select>
+                    <option value="">Select</option>
+                    <option>Cash</option>
+                    <option>UPI</option>
+                    <option>Bank Transfer</option>
+                    <option>Card</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Budget / Payment Notes</label>
+                <textarea placeholder="Installments, due date, special conditions, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- DECLARATION & SIGNATURE -->
+        <div class="section">Confirmation & Signature</div>
+        <p class="note">
+            I hereby confirm that the above information and requirements are correct as per my knowledge.
+        </p>
+
+        <div class="row">
+            <div class="group">
+                <label>Client / Customer Name (Signature)</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Date</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <button class="btn" type="submit">Submit Common Event Requirement Form</button>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Corporate Office Event Planning Form</title>
+
+    <style>
+        body {
+            background: #f3f5f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            background: #0077b6;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 950px;
+            background: white;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #0077b6;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .group {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #f8f8f8;
+        }
+
+        .services label {
+            display: inline-block;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .btn {
+            background: #0077b6;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #005c8a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">CORPORATE OFFICE EVENT PLANNING FORM</div>
+
+<div class="container">
+    <h2>Corporate Event Booking Details</h2>
+
+    <form>
+
+        <!-- COMPANY / CLIENT INFO -->
+        <div class="section">Company / Client Information</div>
+        <div class="row">
+            <div class="group">
+                <label>Company Name</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Department / Division</label>
+                <input type="text" placeholder="e.g. HR, Marketing, Sales">
+            </div>
+
+            <div class="group">
+                <label>Company Address</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Contact Person Name</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Designation</label>
+                <input type="text" placeholder="e.g. HR Manager">
+            </div>
+
+            <div class="group">
+                <label>Contact Number</label>
+                <input type="text" required>
+            </div>
+
+            <div class="group">
+                <label>Email ID</label>
+                <input type="email">
+            </div>
+        </div>
+
+        <!-- EVENT BASIC DETAILS -->
+        <div class="section">Event Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Event Title / Name</label>
+                <input type="text" placeholder="e.g. Annual Meet 2025" required>
+            </div>
+
+            <div class="group">
+                <label>Event Type</label>
+                <select>
+                    <option value="">Select</option>
+                    <option>Conference</option>
+                    <option>Seminar</option>
+                    <option>Workshop / Training</option>
+                    <option>Product Launch</option>
+                    <option>Team Building</option>
+                    <option>Awards & Recognition</option>
+                    <option>Annual Day / Celebration</option>
+                    <option>Press Meet</option>
+                    <option>Networking Event</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Event Objective</label>
+                <input type="text" placeholder="e.g. Training, Branding, Internal Communication">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Event Date</label>
+                <input type="date" required>
+            </div>
+
+            <div class="group">
+                <label>Start Time</label>
+                <input type="time">
+            </div>
+
+            <div class="group">
+                <label>End Time</label>
+                <input type="time">
+            </div>
+
+            <div class="group">
+                <label>Expected No. of Participants</label>
+                <input type="number">
+            </div>
+        </div>
+
+        <!-- VENUE DETAILS -->
+        <div class="section">Venue & Location Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Venue Type</label>
+                <select>
+                    <option value="">Select</option>
+                    <option>Company Premises</option>
+                    <option>Hotel / Banquet Hall</option>
+                    <option>Convention Center</option>
+                    <option>Outdoor Venue</option>
+                    <option>Virtual / Hybrid</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Venue Name</label>
+                <input type="text" placeholder="If already decided">
+            </div>
+
+            <div class="group">
+                <label>City / Location</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Seating Style</label>
+                <select>
+                    <option value="">Select</option>
+                    <option>Theatre Style</option>
+                    <option>Classroom Style</option>
+                    <option>U-Shape</option>
+                    <option>Boardroom</option>
+                    <option>Cabaret / Round Table</option>
+                    <option>Mix / Custom</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Special Venue Instructions</label>
+                <textarea placeholder="Entry gate, parking, security, badges, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- EVENT AGENDA / SCHEDULE -->
+        <div class="section">Event Agenda / Schedule</div>
+        <span class="note">Mention key sessions such as Inauguration, Keynote, Breakout Sessions, Lunch, Vote of Thanks, etc.</span>
+
+        <table>
+            <tr>
+                <th>Session / Activity</th>
+                <th>Time</th>
+                <th>Speaker / Responsible</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Registration & Welcome"></td>
+                <td><input type="time"></td>
+                <td><input type="text" placeholder="e.g. Admin Team"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Inaugural / Opening Speech"></td>
+                <td><input type="time"></td>
+                <td><input type="text" placeholder="e.g. CEO"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Keynote Session"></td>
+                <td><input type="time"></td>
+                <td><input type="text" placeholder="Speaker name"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Breakout / Workshop"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Lunch / Tea Break"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Panel Discussion / Q&A"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Closing Remarks / Vote of Thanks"></td>
+                <td><input type="time"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+
+        <!-- SERVICES & REQUIREMENTS -->
+        <div class="section">Event Services & Requirements</div>
+        <div class="services">
+            <label><input type="checkbox"> Stage Setup</label>
+            <label><input type="checkbox"> Podium / Lectern</label>
+            <label><input type="checkbox"> LED Screen / Projector</label>
+            <label><input type="checkbox"> Sound System & Microphones</label>
+            <label><input type="checkbox"> Lighting Setup</label>
+            <label><input type="checkbox"> Event Branding (Standees / Banners)</label>
+            <label><input type="checkbox"> Registration Desk Setup</label>
+            <label><input type="checkbox"> Photography / Videography</label>
+            <label><input type="checkbox"> Live Streaming / Online Setup</label>
+            <label><input type="checkbox"> Laptop / Technical Support</label>
+            <label><input type="checkbox"> Security Personnel</label>
+            <label><input type="checkbox"> Parking Management</label>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+            <div class="group">
+                <label>Special Corporate Requirements</label>
+                <textarea placeholder="ID cards, NDA forms, restricted areas, VIP movement, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- CATERING DETAILS -->
+        <div class="section">Catering & Refreshments</div>
+        <div class="row">
+            <div class="group">
+                <label>Catering Required</label>
+                <select>
+                    <option value="">Select</option>
+                    <option>Yes - Full Day (Snacks + Lunch + Tea)</option>
+                    <option>Yes - Only Snacks / Tea</option>
+                    <option>Yes - Only Lunch / Dinner</option>
+                    <option>No Catering Required</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Food Type</label>
+                <select>
+                    <option>Veg</option>
+                    <option>Non-Veg</option>
+                    <option>Both</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Approx. No. of Plates</label>
+                <input type="number">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Menu Preferences / Notes</label>
+                <textarea placeholder="Basic / premium menu, special requirements, dietary restrictions, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- BUDGET -->
+        <div class="section">Budget & Payment Details</div>
+        <div class="row">
+            <div class="group">
+                <label>Approximate Budget (₹)</label>
+                <input type="number" placeholder="Total event budget">
+            </div>
+
+            <div class="group">
+                <label>Approved Budget by Management (₹)</label>
+                <input type="number">
+            </div>
+
+            <div class="group">
+                <label>Advance Payment (₹)</label>
+                <input type="number">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Payment Mode</label>
+                <select>
+                    <option>Bank Transfer</option>
+                    <option>Cheque</option>
+                    <option>UPI</option>
+                    <option>Cash</option>
+                    <option>Company PO / Invoice</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Billing Name & GST Details</label>
+                <textarea placeholder="Legal billing name, GSTIN, billing address, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- APPROVAL & SIGNATURE -->
+        <div class="section">Approval & Signatures</div>
+        <p class="note">
+            I hereby confirm that the above event details are correct and approved as per company policy. I agree to the terms and conditions of the Event Management Company.
+        </p>
+
+        <div class="row">
+            <div class="group">
+                <label>Client / Company Representative Name</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Designation</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Signature Date</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="group">
+                <label>Event Manager Name</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Event Management Company</label>
+                <input type="text">
+            </div>
+
+            <div class="group">
+                <label>Manager Sign Date</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <button class="btn" type="submit">Submit Corporate Event Form</button>
+
+    </form>
+</div>
+
+</body>
+</html>
