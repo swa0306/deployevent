@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventKart - My Profile</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root{
+            --primary:#4b4ded;
+            --primary-dark:#3951e6;
+            --accent:#ff9f43;
+            --bg:#f4f6fb;
+            --card-bg:#ffffff;
+            --border:#e5e7eb;
+            --text:#111827;
+            --muted:#6b7280;
+            --shadow:0 18px 40px rgba(15,23,42,0.14);
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg,#dbeafe,#fef3c7);
+            padding:20px 16px;
+            display:flex;
+            justify-content:center;
+        }
+
+        .layout{
+            width:100%;
+            max-width:1200px;
+            background:rgba(255,255,255,0.9);
+            border-radius:26px;
+            box-shadow:var(--shadow);
+            display:flex;
+            overflow:hidden;
+        }
+
+        .sidebar{
+            width:70px;
+            background:linear-gradient(180deg,#e0ecff,#f5f8ff);
+            padding:14px 10px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:18px;
+        }
+        .sidebar-logo{
+            width:38px;
+            height:38px;
+            border-radius:14px;
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#fff;
+            font-weight:700;
+            font-size:18px;
+            box-shadow:0 8px 16px rgba(37,99,235,.35);
+            margin-bottom:8px;
+        }
+        .sidebar-icon{
+            width:34px;
+            height:34px;
+            border-radius:12px;
+            background:#f1f5f9;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            color:#94a3b8;
+            cursor:pointer;
+        }
+        .sidebar-icon.active{
+            background:#eef2ff;
+            color:var(--primary);
+        }
+        .sidebar-icon a{
+            text-decoration:none;
+            color:inherit;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            height:100%;
+        }
+
+        .main{
+            flex:1;
+            background:#f9fafb;
+            padding:18px 22px;
+            display:flex;
+            flex-direction:column;
+            gap:16px;
+        }
+
+        .top-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+        .welcome{
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+        }
+        .welcome-title{
+            font-size:22px;
+            font-weight:600;
+            color:var(--text);
+        }
+        .welcome-date{
+            font-size:12px;
+            color:var(--muted);
+        }
+        .top-right{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .search-box-top{
+            background:#f3f4f6;
+            border-radius:999px;
+            padding:7px 12px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            min-width:180px;
+        }
+        .search-box-top input{
+            border:none;
+            background:transparent;
+            outline:none;
+            font-size:12px;
+            color:#4b5563;
+            width:100%;
+        }
+        .search-icon{
+            font-size:14px;
+            color:#9ca3af;
+        }
+        .avatar-small{
+            width:36px;
+            height:36px;
+            border-radius:999px;
+            background:#e5e7eb;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:15px;
+            font-weight:600;
+            color:#4b5563;
+        }
+
+        .profile-card{
+            background:var(--card-bg);
+            border-radius:22px;
+            overflow:hidden;
+        }
+        .profile-card-header{
+            height:70px;
+            background:linear-gradient(90deg,#bfdbfe,#fef3c7);
+        }
+        .profile-card-body{
+            padding:18px 22px 20px;
+        }
+
+        .profile-top-row{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:16px;
+            gap:12px;
+        }
+        .profile-summary{
+            display:flex;
+            align-items:center;
+            gap:14px;
+        }
+        .profile-avatar{
+            width:64px;
+            height:64px;
+            border-radius:999px;
+            background:#e5e7eb;
+            overflow:hidden;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:26px;
+            font-weight:600;
+            color:#4b5563;
+        }
+        .profile-text{
+            display:flex;
+            flex-direction:column;
+            gap:2px;
+        }
+        .profile-name{
+            font-size:17px;
+            font-weight:600;
+            color:var(--text);
+        }
+        .profile-email{
+            font-size:13px;
+            color:var(--muted);
+        }
+
+        .edit-btn{
+            border:none;
+            border-radius:999px;
+            padding:9px 18px;
+            font-size:13px;
+            font-weight:600;
+            background:var(--primary);
+            color:#fff;
+            cursor:pointer;
+            box-shadow:0 10px 20px rgba(37,99,235,.35);
+            transition:background .12s ease, transform .08s ease, box-shadow .15s ease;
+        }
+        .edit-btn:hover{
+            background:var(--primary-dark);
+            transform:translateY(-1px);
+            box-shadow:0 14px 26px rgba(37,99,235,.30);
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:repeat(2,minmax(0,1fr));
+            gap:14px 18px;
+            margin-bottom:18px;
+        }
+        .field{
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+        }
+        .field label{
+            font-size:12px;
+            color:#6b7280;
+        }
+        .field input{
+            border-radius:10px;
+            border:1px solid var(--border);
+            background:#f9fafb;
+            padding:10px 11px;
+            font-size:13px;
+            outline:none;
+            transition:border .12s ease, box-shadow .12s ease, background .12s ease;
+        }
+        .field input::placeholder{
+            color:#d1d5db;
+        }
+        .field input:focus{
+            border-color:var(--primary);
+            background:#fff;
+            box-shadow:0 0 0 3px rgba(59,130,246,.18);
+        }
+        .field input[readonly]{
+            background:#f3f4f6;
+            color:#6b7280;
+        }
+
+        .section-title{
+            font-size:13px;
+            font-weight:600;
+            color:#4b5563;
+            margin-bottom:8px;
+        }
+
+        .email-block{
+            border-radius:14px;
+            border:1px solid #e5e7eb;
+            padding:10px 12px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-size:13px;
+            color:#374151;
+            background:#f9fafb;
+            margin-bottom:10px;
+        }
+        .email-icon{
+            width:30px;
+            height:30px;
+            border-radius:999px;
+            background:#e0f2fe;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:16px;
+            color:#0284c7;
+        }
+        .email-meta{
+            font-size:11px;
+            color:#9ca3af;
+        }
+        .add-email-btn{
+            border:none;
+            border-radius:10px;
+            padding:8px 12px;
+            font-size:12px;
+            background:#eef2ff;
+            color:var(--primary);
+            cursor:pointer;
+        }
+
+        .hint{
+            font-size:11px;
+            color:#9ca3af;
+            margin-top:6px;
+        }
+
+        @media (max-width:900px){
+            .layout{
+                flex-direction:column;
+            }
+            .sidebar{
+                flex-direction:row;
+                width:100%;
+                justify-content:flex-start;
+                border-radius:26px 26px 0 0;
+            }
+            .sidebar-logo{
+                margin-bottom:0;
+                margin-right:6px;
+            }
+        }
+
+        @media (max-width:700px){
+            body{
+                padding:10px;
+            }
+            .main{
+                padding:14px 12px;
+            }
+            .form-grid{
+                grid-template-columns:1fr;
+            }
+            .top-header{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:10px;
+            }
+            .top-right{
+                width:100%;
+                justify-content:space-between;
+            }
+            .search-box-top{
+                flex:1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">EK</div>
+        <div class="sidebar-icon">
+            <a href="index.html" title="Home">🏠</a>
+        </div>
+        <div class="sidebar-icon active" title="Profile">👤</div>
+        <div class="sidebar-icon" title="Notifications">🔔</div>
+        <div class="sidebar-icon" title="Settings">⚙️</div>
+    </aside>
+
+    <main class="main">
+        <header class="top-header">
+            <div class="welcome">
+                <div class="welcome-title" id="welcomeTitle">Welcome, Organizer</div>
+                <div class="welcome-date" id="welcomeDate">Today</div>
+            </div>
+
+            <div class="top-right">
+                <div class="search-box-top">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="avatar-small" id="topAvatar">U</div>
+            </div>
+        </header>
+
+        <section class="profile-card">
+            <div class="profile-card-header"></div>
+
+            <div class="profile-card-body">
+                <div class="profile-top-row">
+                    <div class="profile-summary">
+                        <div class="profile-avatar" id="profileAvatar">U</div>
+                        <div class="profile-text">
+                            <div class="profile-name" id="profileNameText">Your Name</div>
+                            <div class="profile-email" id="profileEmailText">you@example.com</div>
+                        </div>
+                    </div>
+
+                    <button class="edit-btn" id="editBtn">Edit</button>
+                </div>
+
+                <form id="profileForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Your full name">
+                        </div>
+
+                        <div class="field">
+                            <label for="city">City</label>
+                            <input type="text" id="city" placeholder="Your city">
+                        </div>
+
+                        <div class="field">
+                            <label for="profession">Working Profession</label>
+                            <input type="text" id="profession" placeholder="Event Manager, Student, etc.">
+                        </div>
+
+                        <div class="field">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" placeholder="Your phone number">
+                        </div>
+
+                        <div class="field">
+                            <label for="email">Login Email</label>
+                            <input type="email" id="email" readonly>
+                        </div>
+
+                        <div class="field">
+                            <label for="nick">Nick Name (optional)</label>
+                            <input type="text" id="nick" placeholder="How you like to be called">
+                        </div>
+                    </div>
+
+                    <div class="section-title">My email address</div>
+                    <div class="email-block">
+                        <div class="email-icon">✉️</div>
+                        <div>
+                            <div id="emailBlockMain">you@example.com</div>
+                            <div class="email-meta" id="emailMeta">primary login email</div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="add-email-btn" disabled>
+                        + Add Email Address
+                    </button>
+
+                    <p class="hint">
+                        You can update your name, profession, mobile and city anytime. Changes are saved in this browser and used on your EventKart pages.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    const LOGIN_PAGE = "login.html";
+
+    const welcomeTitle   = document.getElementById("welcomeTitle");
+    const welcomeDateEl  = document.getElementById("welcomeDate");
+    const profileAvatar  = document.getElementById("profileAvatar");
+    const topAvatar      = document.getElementById("topAvatar");
+    const profileNameTxt = document.getElementById("profileNameText");
+    const profileEmailTxt= document.getElementById("profileEmailText");
+    const emailBlockMain = document.getElementById("emailBlockMain");
+
+    const fullNameInput  = document.getElementById("fullName");
+    const cityInput      = document.getElementById("city");
+    const professionInput= document.getElementById("profession");
+    const mobileInput    = document.getElementById("mobile");
+    const emailInput     = document.getElementById("email");
+    const nickInput      = document.getElementById("nick");
+
+    const editBtn        = document.getElementById("editBtn");
+    const profileForm    = document.getElementById("profileForm");
+
+    let userData = null;
+    let editing  = false;
+
+    function formatDate(date){
+        const opts = { weekday:"short", day:"2-digit", month:"long", year:"numeric" };
+        return date.toLocaleDateString(undefined, opts);
+    }
+
+    function guessNameFromEmail(email){
+        if(!email) return "";
+        const before = email.split("@")[0];
+        const parts = before.split(/[._]/);
+        return parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(" ");
+    }
+
+    function setEditing(flag){
+        editing = flag;
+        const inputs = [fullNameInput, cityInput, professionInput, mobileInput, nickInput];
+        inputs.forEach(inp => inp.readOnly = !editing);
+        editBtn.textContent = editing ? "Save" : "Edit";
+    }
+
+    function loadUser(){
+        const json = localStorage.getItem("eventkartUser");
+        if(!json){
+            alert("Please login first to view your profile.");
+            window.location.href = LOGIN_PAGE;
+            return;
+        }
+        userData = JSON.parse(json);
+
+        const email = userData.email || "";
+        const name  = userData.name || userData.fullName || guessNameFromEmail(email);
+        const city  = userData.city || "";
+        const prof  = userData.profession || "";
+        const mobile= userData.mobile || "";
+        const nick  = userData.nick || "";
+
+        fullNameInput.value   = name;
+        cityInput.value       = city;
+        professionInput.value = prof;
+        mobileInput.value     = mobile;
+        emailInput.value      = email;
+        nickInput.value       = nick;
+
+        welcomeTitle.textContent   = "Welcome, " + (nick || name || "Organizer");
+        profileNameTxt.textContent = name || "Your Name";
+        profileEmailTxt.textContent= email || "you@example.com";
+        emailBlockMain.textContent = email || "you@example.com";
+
+        const initial = (name || email || "?").trim().charAt(0).toUpperCase();
+        profileAvatar.textContent = initial;
+        topAvatar.textContent     = initial;
+
+        welcomeDateEl.textContent = formatDate(new Date());
+
+        setEditing(false);
+    }
+
+    editBtn.addEventListener("click", function(){
+        if(!editing){
+            setEditing(true);
+        }else{
+            userData.name       = fullNameInput.value.trim();
+            userData.fullName   = fullNameInput.value.trim();
+            userData.city       = cityInput.value.trim();
+            userData.profession = professionInput.value.trim();
+            userData.mobile     = mobileInput.value.trim();
+            userData.nick       = nickInput.value.trim();
+
+            localStorage.setItem("eventkartUser", JSON.stringify(userData));
+            alert("Profile updated successfully.");
+            loadUser();
+        }
+    });
+
+    profileForm.addEventListener("submit", function(e){ e.preventDefault(); });
+
+    loadUser();
+</script>
+
+</body>
+</html>

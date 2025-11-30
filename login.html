@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>EventKart - Join & Login</title>
+
+    <!-- IMPORTANT: makes page responsive on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Identity Services script -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        :root{
+            --primary:#4b4ded;
+            --primary-dark:#3a3cbc;
+            --accent:#ff9f43;
+            --bg:#f5f7fb;
+            --card-bg:#ffffff;
+            --text:#222;
+            --muted:#6b6f7b;
+            --border:#e2e4ef;
+            --shadow:0 18px 40px rgba(15, 23, 42, 0.14);
+            --radius:18px;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Poppins",sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:radial-gradient(circle at top left,#eef3ff 0,#f5f7fb 40%,#fdfbff 100%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:24px 14px;
+        }
+
+        .page-wrapper{
+            width:100%;
+            max-width:1120px;
+        }
+
+        /* Top brand header */
+        .brand-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:18px;
+            padding:0 6px 6px;
+        }
+
+        .brand-left{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .logo-circle{
+            width:38px;
+            height:38px;
+            border-radius:50%;
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#fff;
+            font-weight:700;
+            font-size:18px;
+            box-shadow:0 10px 20px rgba(76,81,191,.35);
+        }
+        .brand-text-main{
+            font-size:20px;
+            font-weight:700;
+            color:#111827;
+            letter-spacing:.04em;
+        }
+        .brand-text-sub{
+            font-size:11px;
+            text-transform:uppercase;
+            color:var(--muted);
+            letter-spacing:.16em;
+        }
+
+        .brand-right{
+            font-size:11px;
+            color:var(--muted);
+        }
+        .brand-right span{
+            font-weight:600;
+            color:var(--primary);
+        }
+
+        /* Main card container */
+        .auth-card{
+            background:linear-gradient(145deg,#ffffff,#f4f5ff);
+            border-radius:26px;
+            box-shadow:var(--shadow);
+            padding:26px 26px 26px;
+            display:flex;
+            gap:26px;
+            position:relative;
+            overflow:hidden;
+        }
+
+        /* decorative tag */
+        .tag-chip{
+            position:absolute;
+            top:16px;
+            right:20px;
+            background:#111827;
+            color:#f9fafb;
+            padding:4px 11px;
+            border-radius:30px;
+            font-size:10px;
+            letter-spacing:.14em;
+            text-transform:uppercase;
+            opacity:0.86;
+        }
+
+        .auth-left{
+            flex:1.1;
+            padding-right:12px;
+            border-right:1px dashed rgba(148,163,184,.6);
+        }
+
+        .auth-right{
+            flex:1;
+            padding-left:6px;
+        }
+
+        .section-label{
+            font-size:11px;
+            text-transform:uppercase;
+            font-weight:600;
+            letter-spacing:.18em;
+            color:var(--accent);
+            margin-bottom:6px;
+        }
+
+        .page-title{
+            font-size:26px;
+            font-weight:700;
+            color:#111827;
+            margin-bottom:4px;
+        }
+
+        .page-subtitle{
+            font-size:12px;
+            color:var(--muted);
+            margin-bottom:18px;
+        }
+
+        form{
+            width:100%;
+        }
+
+        .field-group{
+            margin-bottom:14px;
+        }
+
+        .field-label{
+            font-size:12px;
+            font-weight:500;
+            margin-bottom:4px;
+            color:#374151;
+        }
+
+        .input-control{
+            width:100%;
+            padding:10px 11px;
+            border-radius:12px;
+            border:1px solid var(--border);
+            font-size:13px;
+            outline:none;
+            transition:all .16s ease;
+            background:#f9fafb;
+        }
+        .input-control::placeholder{
+            color:#9ca3af;
+            font-size:12px;
+        }
+        .input-control:focus{
+            border-color:var(--primary);
+            background:#fff;
+            box-shadow:0 0 0 3px rgba(74, 83, 255, 0.14);
+        }
+
+        .checkbox-row{
+            display:flex;
+            align-items:flex-start;
+            gap:8px;
+            font-size:11px;
+            color:var(--muted);
+            margin-bottom:14px;
+        }
+        .checkbox-row input{
+            margin-top:2px;
+            accent-color:var(--primary);
+        }
+        .checkbox-row a{
+            color:var(--primary);
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            width:100%;
+            border:none;
+            outline:none;
+            border-radius:999px;
+            padding:9px 12px;
+            font-size:13px;
+            font-weight:600;
+            cursor:pointer;
+            transition:transform .08s ease, box-shadow .18s ease, background .18s ease;
+        }
+        .btn-primary{
+            background:var(--primary);
+            color:#fff;
+            box-shadow:0 12px 26px rgba(37, 99, 235, 0.35);
+        }
+        .btn-primary:hover{
+            background:var(--primary-dark);
+            transform:translateY(-1px);
+            box-shadow:0 16px 30px rgba(37, 99, 235, 0.27);
+        }
+        .btn-outline{
+            background:#fff;
+            color:#374151;
+            border:1px solid var(--border);
+            box-shadow:0 6px 16px rgba(15,23,42,0.08);
+        }
+        .btn-outline:hover{
+            background:#f9fafb;
+            transform:translateY(-1px);
+        }
+
+        .btn-icon{
+            font-size:14px;
+        }
+
+        .divider{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            margin:14px 0 10px;
+            font-size:11px;
+            color:#9ca3af;
+        }
+        .divider span{
+            flex:1;
+            height:1px;
+            background:#e5e7eb;
+        }
+
+        .footer-text{
+            margin-top:10px;
+            font-size:11px;
+            text-align:center;
+            color:var(--muted);
+        }
+        .footer-text a{
+            color:var(--primary);
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        /* Login card details */
+        .login-title{
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:4px;
+            color:#111827;
+        }
+        .text-small{
+            font-size:12px;
+            color:var(--muted);
+            margin-bottom:14px;
+        }
+        .error-msg{
+            font-size:11px;
+            color:#ef4444;
+            margin-top:4px;
+        }
+        .forgot-link{
+            font-size:11px;
+            margin-top:4px;
+        }
+        .forgot-link a{
+            color:var(--primary);
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        .login-extra{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:10px;
+            font-size:11px;
+            color:var(--muted);
+        }
+        .login-extra span{
+            font-weight:500;
+            color:#16a34a;
+        }
+
+        /* Small “event stats” block */
+        .stats-strip{
+            display:flex;
+            gap:10px;
+            margin-top:12px;
+            padding:9px 10px;
+            border-radius:14px;
+            background:rgba(248,250,252,.96);
+            border:1px dashed rgba(148,163,184,.7);
+        }
+        .stat-item{
+            flex:1;
+        }
+        .stat-label{
+            font-size:10px;
+            text-transform:uppercase;
+            color:#9ca3af;
+            letter-spacing:.15em;
+        }
+        .stat-value{
+            font-size:14px;
+            font-weight:700;
+            color:#111827;
+        }
+        .stat-sub{
+            font-size:10px;
+            color:#6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px){
+            .auth-card{
+                flex-direction:column;
+                padding:20px 18px 18px;
+            }
+            .auth-left{
+                padding-right:0;
+                border-right:none;
+                border-bottom:1px dashed rgba(148,163,184,.6);
+                padding-bottom:18px;
+                margin-bottom:8px;
+            }
+            .auth-right{
+                padding-left:0;
+            }
+            .page-title{
+                font-size:22px;
+            }
+        }
+
+        @media (max-width: 540px){
+            .brand-header{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:4px;
+            }
+            .auth-card{
+                border-radius:20px;
+                padding:16px 14px 14px;
+            }
+            .tag-chip{
+                font-size:9px;
+                top:10px;
+                right:12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- GOOGLE ID ONLOAD CONFIG (works for BOTH buttons) -->
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID_HERE"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+
+    <!-- Brand / header -->
+    <header class="brand-header">
+        <div class="brand-left">
+            <div class="logo-circle">EK</div>
+            <div>
+                <div class="brand-text-main">EventKart</div>
+                <div class="brand-text-sub">Smart Event Management Portal</div>
+            </div>
+        </div>
+        <div class="brand-right">
+            Need help? <span>support@eventkart.com</span>
+        </div>
+    </header>
+
+    <!-- Combined Sign Up + Login card -->
+    <section class="auth-card">
+        <div class="tag-chip">Plan • Invite • Celebrate</div>
+
+        <!-- SIGN UP PANEL -->
+        <div class="auth-left">
+            <div class="section-label">New here?</div>
+            <h1 class="page-title">Create your free organizer account</h1>
+            <p class="page-subtitle">
+                Sign up in under 30 seconds. No credit card needed. 
+                Start creating event pages, sending invites & tracking RSVPs instantly.
+            </p>
+
+            <form id="signup-form">
+                <div class="field-group">
+                    <label class="field-label" for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" class="input-control" placeholder="Your full name" required>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="signup-email">Your email address</label>
+                    <input type="email" id="signup-email" class="input-control" placeholder="you@example.com" required>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="input-control" placeholder="Create a strong password" required>
+                </div>
+
+                <div class="checkbox-row">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="#">Terms of Service</a> and
+                        <a href="#">Privacy Policy</a>.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Create my free account
+                </button>
+
+                <div class="divider">
+                    <span></span> or continue with <span></span>
+                </div>
+
+                <!-- OFFICIAL GOOGLE SIGN-UP BUTTON -->
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="signup_with"
+                     data-shape="pill"
+                     data-logo_alignment="left"
+                     style="width:100%; margin-bottom:6px;">
+                </div>
+
+                <!-- Just visual; no real FB auth here -->
+                <button type="button" class="btn btn-outline">
+                    <span class="btn-icon">f</span>
+                    Sign up with Facebook
+                </button>
+
+                <div class="footer-text">
+                    Already an organizer on EventKart?
+                    <a href="#login-section">Log in on the right →</a>
+                </div>
+            </form>
+
+            <!-- small stats line to make page look professional -->
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <div class="stat-label">Active organizers</div>
+                    <div class="stat-value">12,430+</div>
+                    <div class="stat-sub">wedding, corporate & college fests</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Tickets managed</div>
+                    <div class="stat-value">1.8M</div>
+                    <div class="stat-sub">bookings handled securely</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGIN PANEL -->
+        <div class="auth-right" id="login-section">
+            <div class="section-label">Welcome back</div>
+            <h2 class="login-title">Log in to your dashboard</h2>
+            <p class="text-small">
+                Please enter your details to access your events, bookings & guest lists.
+            </p>
+
+            <form id="login-form">
+                <div class="field-group">
+                    <label class="field-label" for="login-email">Email</label>
+                    <input type="email" id="login-email" class="input-control" placeholder="Enter your email" required>
+                    <div class="error-msg" id="login-email-error" style="display:none;">User not found. Please sign up first.</div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="login-password">Password</label>
+                    <input type="password" id="login-password" class="input-control" placeholder="Enter your password" required>
+                    <div class="error-msg" id="login-pass-error" style="display:none;">Incorrect password.</div>
+                    <div class="forgot-link">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+
+                <div class="login-extra">
+                    <span>✓ Secure login</span>
+                    <span>Protected by Cloudflare</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Sign in
+                </button>
+
+                <div class="divider">
+                    <span></span> or <span></span>
+                </div>
+
+                <!-- SECOND GOOGLE BUTTON FOR LOGIN -->
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-size="large"
+                     data-theme="outline"
+                     data-text="signin_with"
+                     data-shape="pill"
+                     data-logo_alignment="left"
+                     style="width:100%;">
+                </div>
+
+                <div class="footer-text" style="margin-top:14px;">
+                    Don’t have an account yet?
+                    <a href="#top">Create a free organizer account</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- APP LOGIC: CONNECT TO MAIN PAGE -->
+<script>
+    // 🔗 main home page
+    const MAIN_PAGE = "index.html";
+
+    // Auto-redirect if already logged in
+    document.addEventListener("DOMContentLoaded", () => {
+        const existingUser = localStorage.getItem("eventkartUser");
+        if (existingUser) {
+            window.location.href = MAIN_PAGE;
+        }
+    });
+
+    // ========== EMAIL SIGNUP ==========
+    const signupForm = document.getElementById("signup-form");
+    signupForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name  = document.getElementById("signup-name").value.trim();
+        const email = document.getElementById("signup-email").value.trim();
+        const password = document.getElementById("signup-password").value;
+
+        if (!name || !email || !password) {
+            alert("Please enter name, email and password.");
+            return;
+        }
+
+        const userData = {
+            name: name,
+            email: email,
+            password: password,
+            provider: "email"
+        };
+        localStorage.setItem("eventkartUser", JSON.stringify(userData));
+
+        alert("Account created successfully! Redirecting to EventKart...");
+        window.location.href = MAIN_PAGE;
+    });
+
+    // ========== EMAIL LOGIN ==========
+    const loginForm      = document.getElementById("login-form");
+    const emailError     = document.getElementById("login-email-error");
+    const passError      = document.getElementById("login-pass-error");
+
+    loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailError.style.display = "none";
+        passError.style.display  = "none";
+
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value;
+
+        const saved = localStorage.getItem("eventkartUser");
+        if (!saved) {
+            emailError.style.display = "block";
+            return;
+        }
+
+        const userData = JSON.parse(saved);
+
+        if (userData.email !== email) {
+            emailError.style.display = "block";
+            return;
+        }
+
+        if (userData.provider === "email" && userData.password !== password) {
+            passError.style.display = "block";
+            return;
+        }
+
+        alert("Login successful! Redirecting to EventKart...");
+        window.location.href = MAIN_PAGE;
+    });
+
+    // ========== GOOGLE LOGIN / SIGNUP ==========
+    function handleCredentialResponse(response) {
+        const data = parseJwt(response.credential);
+
+        const userData = {
+            email: data.email,
+            name: data.name,
+            picture: data.picture,
+            googleId: data.sub,
+            provider: "google"
+        };
+        localStorage.setItem("eventkartUser", JSON.stringify(userData));
+
+        alert("Welcome " + data.name + "\nEmail: " + data.email);
+        window.location.href = MAIN_PAGE;
+    }
+
+    // Helper to decode JWT from Google
+    function parseJwt (token) {
+        let base64Url = token.split('.')[1];
+        let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        let jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    }
+</script>
+
+</body>
+</html>
