@@ -72,6 +72,7 @@
             cursor:pointer;
             box-shadow:0 1px 3px rgba(0,0,0,0.12);
             transition:background .15s ease, transform .1s ease, box-shadow .15s ease;
+            display:none; /* hidden by default when not logged in */
         }
         .logout-btn:hover{
             background:#ffe9e9;
@@ -633,13 +634,13 @@
     drawerClose.addEventListener('click', closeDrawer);
     drawerOverlay.addEventListener('click', closeDrawer);
 
-    const drawerLoginBtn   = document.getElementById('drawerLoginBtn');
-    const drawerLoginMenu  = document.getElementById('drawerLoginMenu');
-    const drawerUserName   = document.getElementById('drawerUserName');
-    const drawerLoginLink  = document.getElementById('drawerLoginLink');
-    const drawerProfileLink= document.getElementById('drawerProfileLink');
-    const drawerLogoutLink = document.getElementById('drawerLogoutLink');
-    const logoutBtn        = document.getElementById('logoutBtn');
+    const drawerLoginBtn    = document.getElementById('drawerLoginBtn');
+    const drawerLoginMenu   = document.getElementById('drawerLoginMenu');
+    const drawerUserName    = document.getElementById('drawerUserName');
+    const drawerLoginLink   = document.getElementById('drawerLoginLink');
+    const drawerProfileLink = document.getElementById('drawerProfileLink');
+    const drawerLogoutLink  = document.getElementById('drawerLogoutLink');
+    const logoutBtn         = document.getElementById('logoutBtn');
 
     drawerLoginBtn.addEventListener('click', ()=>{
         drawerLoginMenu.classList.toggle('open');
@@ -647,17 +648,33 @@
 
     const LOGIN_PAGE = "login.html";
 
+    // Read user from localStorage (set by login.html)
+    let userData = null;
     const userJson = localStorage.getItem('eventkartUser');
-    const userData = userJson ? JSON.parse(userJson) : null;
+    if (userJson) {
+        try {
+            userData = JSON.parse(userJson);
+        } catch(e) {
+            console.error("Invalid user data in localStorage, clearing...", e);
+            localStorage.removeItem('eventkartUser');
+        }
+    }
 
-    if (!userData) {
-        window.location.href = LOGIN_PAGE;
-    } else {
+    // Update UI based on login state (NO REDIRECT)
+    if (userData) {
+        // Logged in
         drawerUserName.textContent = userData.name || userData.email || "My Account";
         drawerLoginLink.style.display   = "none";
         drawerProfileLink.style.display = "block";
         drawerLogoutLink.style.display  = "block";
         logoutBtn.style.display         = "inline-block";
+    } else {
+        // Not logged in – show login link, hide profile + logout
+        drawerUserName.textContent      = "Login";
+        drawerLoginLink.style.display   = "block";
+        drawerProfileLink.style.display = "none";
+        drawerLogoutLink.style.display  = "none";
+        logoutBtn.style.display         = "none";
     }
 
     function logoutUser(e){
@@ -671,8 +688,8 @@
         window.location.href = LOGIN_PAGE;
     }
 
-    logoutBtn.addEventListener('click', logoutUser);
     drawerLogoutLink.addEventListener('click', logoutUser);
+    logoutBtn.addEventListener('click', logoutUser);
 
     const slides = document.querySelectorAll('.banner-slide');
     const dots   = document.querySelectorAll('.banner-dot');
