@@ -388,7 +388,7 @@
 
 <div class="page-wrapper">
 
-    <!-- GOOGLE ID ONLOAD CONFIG (works for BOTH buttons) -->
+    <!-- GOOGLE ID ONLOAD CONFIG -->
     <div id="g_id_onload"
          data-client_id="YOUR_GOOGLE_CLIENT_ID_HERE"
          data-context="signin"
@@ -479,7 +479,7 @@
                 </div>
             </form>
 
-            <!-- small stats line to make page look professional -->
+            <!-- small stats line -->
             <div class="stats-strip">
                 <div class="stat-item">
                     <div class="stat-label">Active organizers</div>
@@ -553,7 +553,7 @@
 
 <!-- APP LOGIC: CONNECT TO MAIN PAGE -->
 <script>
-    // 🔗 main home page
+    // main home page
     const MAIN_PAGE = "index.html";
 
     // Auto-redirect if already logged in
@@ -578,6 +578,7 @@
             return;
         }
 
+        // main auth object
         const userData = {
             name: name,
             email: email,
@@ -585,6 +586,17 @@
             provider: "email"
         };
         localStorage.setItem("eventkartUser", JSON.stringify(userData));
+
+        // base profile object for profile.html
+        const profileData = {
+            name: name,
+            email: email,
+            phone: "",
+            city: "",
+            profession: "",
+            about: ""
+        };
+        localStorage.setItem("eventkartProfile", JSON.stringify(profileData));
 
         alert("Account created successfully! Redirecting to EventKart...");
         window.location.href = MAIN_PAGE;
@@ -638,6 +650,17 @@
             provider: "google"
         };
         localStorage.setItem("eventkartUser", JSON.stringify(userData));
+
+        // also create / update profile for profile.html
+        const profileData = {
+            name: data.name,
+            email: data.email,
+            phone: "",
+            city: "",
+            profession: "",
+            about: ""
+        };
+        localStorage.setItem("eventkartProfile", JSON.stringify(profileData));
 
         alert("Welcome " + data.name + "\nEmail: " + data.email);
         window.location.href = MAIN_PAGE;
